@@ -13,9 +13,9 @@ import (
 
 import (
 	context "context"
-	api "gitlab.longsys.com/cloud/go-micro/v2/api"
-	client "gitlab.longsys.com/cloud/go-micro/v2/client"
-	server "gitlab.longsys.com/cloud/go-micro/v2/server"
+	api "github.com/asim/go-micro/v2/api"
+	client "github.com/asim/go-micro/v2/client"
+	server "github.com/asim/go-micro/v2/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.

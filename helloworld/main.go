@@ -4,7 +4,7 @@ package main
 
 import (
 	"context"
-	"gitlab.longsys.com/cloud/go-micro/v2"
+	"github.com/asim/go-micro/v2"
 	"log"
 
 	// 引用上面生成的proto文件

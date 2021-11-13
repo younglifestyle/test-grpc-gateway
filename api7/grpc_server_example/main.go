@@ -143,6 +143,10 @@ func (s *server) Plus(ctx context.Context, in *pb.PlusRequest) (*pb.PlusReply, e
 	return &pb.PlusReply{Result: in.A + in.B}, nil
 }
 
+
+//go:generate protoc --proto_path=. --proto_path=C:\Users\11\go\bin\include\googleapis --go_out=. --go-grpc_out=. helloworld.proto
+
+
 func main() {
 	flag.Parse()
 
