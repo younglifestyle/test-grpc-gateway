@@ -1,0 +1,36 @@
+syntax = "proto3";
+option go_package = "./hello";
+import "google/api/annotations.proto";
+package helloworld;
+
+service Greeter {
+  rpc SayHello12 (HelloRequest) returns (HelloReply) {
+    option (google.api.http) = { get: "/helloworld.Greeter/SayHello/{name}/{name1}"};
+  }
+  rpc SayHello1 (HelloRequest) returns (HelloReply) {
+    option (google.api.http) = { get: "/helloworld.Greeter/SayHello1"};
+  }
+  rpc Plus (PlusRequest) returns (PlusReply) {}
+  rpc SayHelloAfterDelay (HelloRequest) returns (HelloReply) {}
+}
+
+message HelloRequest {
+  string name = 1;
+  string name1 = 2;
+  string name2 = 3;
+  string name4 = 4;
+  string name5 = 5;
+}
+
+message HelloReply {
+  string message = 1;
+}
+
+message PlusRequest {
+  int64 a = 1;
+  int64 b = 2;
+}
+
+message PlusReply {
+  int64 result = 1;
+}

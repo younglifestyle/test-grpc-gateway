@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+import "google/protobuf/field_mask.proto";
+import "google/api/annotations.proto";
+
+package greeter;
+
+option go_package = "./greeter";
+
+service Greeter {
+  rpc Hello(HelloRequest) returns (HelloResponse) {
+    option (google.api.http) = {
+      get: "/hello/fieldMask/hello"
+    };
+  }
+  rpc Hello2(HelloFieldMaskRequest) returns (FastCodes) {
+    option (google.api.http) = {
+      post: "/hello/fieldMask"
+      body: "*"
+    };
+  }
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloResponse {
+  string greeting = 2;
+}
+
+message HelloFieldMaskRequest {
+  int32 task_id = 1;
+  bool is_delete = 2;
+  bool is_finished = 3;
+  google.protobuf.FieldMask field_mask = 4;
+}
+
+message FastCodes {
+  repeated FastCode fast_codes = 1;
+}
+
+message FastCode {
+  // @inject_tag: form:"id,omitempty" bson:"_id,omitempty"
+  string id = 1;
+  // @inject_tag: form:"fast_code_num,omitempty" bson:"fast_code_num,omitempty"
+  string fast_code_num = 2; // 快码编号
+  // @inject_tag: form:"fast_code_desc,omitempty" bson:"fast_code_desc,omitempty"
+  string fast_code_desc = 3;
+  // @inject_tag: form:"fast_code_type,omitempty" bson:"fast_code_type,omitempty"
+  string fast_code_type = 4;
+  // @inject_tag: form:"fast_code_level" bson:"fast_code_level"
+  bool fast_code_level = 5;  // 快码应用层级  [系统级别 / 用户级别]
+  // @inject_tag: form:"org_id,omitempty" bson:"org_id,omitempty"
+  int32 org_id = 6; // 是否区分组织, 有组织ID即为区分组织
+}
+
+message HelloFieldMaskResponse {
+  repeated string field_mask = 1;
+}
